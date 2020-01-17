@@ -1,18 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="" />
+    <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Activate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Forgotpassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Root.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1WKcbm5jh2etNlBzw8VN4PNa6Zw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Fundoonotes-backend" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -36,7 +99,60 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578901800877</updated>
+      <workItem from="1578901804130" duration="3125000" />
+      <workItem from="1579147467599" duration="11353000" />
+      <workItem from="1579161118960" duration="14270000" />
+      <workItem from="1579232686027" duration="24107000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="311" y="58" width="800" height="677" key="#ESLint" timestamp="1579168986879">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="311" y="58" width="800" height="677" key="#ESLint/67.27.1299.741@67.27.1299.741" timestamp="1579168986879" />
+    <state x="311" y="58" width="800" height="677" key="#Plugins" timestamp="1579161041545">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="311" y="58" width="800" height="677" key="#Plugins/67.27.1299.741@67.27.1299.741" timestamp="1579161041545" />
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579168517481">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1579168517481" />
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1579270045904">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1579270045904" />
+    <state width="1253" height="175" key="GridCell.Tab.0.center" timestamp="1579270045902">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1579270045902" />
+    <state width="1253" height="175" key="GridCell.Tab.0.left" timestamp="1579270045901">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1579270045901" />
+    <state width="1253" height="175" key="GridCell.Tab.0.right" timestamp="1579270045903">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1579270045903" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1579161119055">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1579161119055" />
+    <state x="380" y="175" key="run.anything.popup" timestamp="1579256846283">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1579256846283" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1579270126695">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1579270126695" />
+    <state x="112" y="150" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1579270129909">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="112" y="150" key="vcs.ApplyPatchDifferentiatedDialog/67.27.1299.741@67.27.1299.741" timestamp="1579270129909" />
   </component>
 </project>
