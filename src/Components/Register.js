@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "materialize-css"
 import axios from "axios";
 import {Link} from "react-router-dom";
 
 function Register() {
     const [regData, setRegData] = useState({fname: "", lname: "", eid: "", phn: "", adrs: "", pas: "", conpas: ""})
+    useEffect(() => {
+        document.title = "Registration"
+    }, []);
 
     function register(e) {
         e.preventDefault()
@@ -70,7 +73,8 @@ function Register() {
                                    pattern={"^[0-9]{10}$"} value={regData.phn}
                                    required={true} onChange={e => setRegData({...regData, phn: e.target.value})}/>
                             <label htmlFor="input_phone">Phone</label>
-                            <span className="helper-text" data-error="Should be numbers and length should not be more than 10"/>
+                            <span className="helper-text"
+                                  data-error="Should be numbers and length should not be more than 10"/>
                         </div>
                     </div>
                     <div className="row">
@@ -87,10 +91,10 @@ function Register() {
                             <i className="material-icons prefix">fingerprint</i>
                             <input className="validate" id="input_password" value={regData.pas} type="password"
                                    pattern={"^((?=.*[a-z])(?=.*[A-Z])(?!.*\\s)(?=.*[@$!%*?&])).{8,15}$"}
-                                   required={true} onChange={e => setRegData({...regData, pas: e.target.value})}
-                                   onBlur={passwordValidator}/>
+                                   required={true} onChange={e => setRegData({...regData, pas: e.target.value})}/>
                             <label htmlFor="input_password">Password</label>
-                            <span className="helper-text" data-error="Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"/>
+                            <span className="helper-text"
+                                  data-error="Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"/>
                         </div>
                         <div className="input-field col s6">
                             <input className="validate" id="input_confirmpassword" value={regData.conpas}
@@ -99,7 +103,8 @@ function Register() {
                                    required={true} onChange={e => setRegData({...regData, conpas: e.target.value})}
                                    onBlur={passwordValidator}/>
                             <label htmlFor="input_confirmpassword">Confirm Password</label>
-                            <span className="helper-text" data-error="Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"/>
+                            <span className="helper-text"
+                                  data-error="Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"/>
                         </div>
                     </div>
                     <div className="row">

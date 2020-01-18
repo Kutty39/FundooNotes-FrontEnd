@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios"
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 function Activate({match}) {
     const [responseText, setResponseText] = useState("");
     const [errorText, setErrorText] = useState({});
-
+    useEffect(() => {
+        document.title = "Account Activation"
+    }, []);
     const activateFuction = () => {
         axios.get(`/activate/${match.params.jwt}`)
             .then(response => setResponseText(response.data.response))

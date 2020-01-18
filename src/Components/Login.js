@@ -1,16 +1,24 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios'
 import "materialize-css"
 import {Link} from "react-router-dom";
+import {JwtContext} from "./JwtContext";
 
 function Login() {
+    const [jwt, setJwt] = useContext(JwtContext)
     const [loginData, setLoginData] = useState({username: "", password: ""});
     const [hid, setHid] = useState(true);
     const [hidtext, setHidtext] = useState("");
+    useEffect(() => {
+        document.title = "Login"
+    }, []);
 
     function login(e) {
         e.preventDefault();
-        axios.post("/login", loginData).then((response) => alert(response.data.response))
+        axios.post("/login", loginData).then((response) => {
+            alert(response.data.response);
+            setJwt(response.data.response)
+        })
             .catch((error) => {
                 setHid(false);
                 setHidtext(error.response.data.errorMessage);
