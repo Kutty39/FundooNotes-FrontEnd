@@ -1,5 +1,4 @@
 import React from "react";
-import "materialize-css"
 function Home() {
 return(
     <div>
