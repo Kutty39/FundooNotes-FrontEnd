@@ -1,9 +1,17 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Button, Col, Container, Form, FormControl, FormGroup, Row} from "react-bootstrap";
+import MaterialIcon from "react-google-material-icons";
+import {Link} from "react-router-dom";
 
 function ResetPassword(props) {
     const [header, setHeader] = useState({Authorization: ""});
     const [passDto, setPassDto] = useState({password: "", conpassword: ""});
+    const [pasError, setPasError] = useState({
+        er: false,
+        msg: "Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"
+    });
+
     useEffect(() => {
         setHeader({...header, Authorization: props.match.params.jwt})
     }, []);
@@ -17,53 +25,58 @@ function ResetPassword(props) {
             .catch(error => alert(error.response.data.errorMessage))
     };
 
-    const passwordValidator = (e) => {
-        let conpasField = e.target;
-        if (passDto.password !== passDto.conpassword) {
-            conpasField.setCustomValidity("Password and Confirm Password is not matched")
+
+    const changeValues = (e) => {
+        setPassDto({...passDto, [e.target.name]: e.target.value})
+    };
+
+    const regexValid = (e) => {
+        const regex = new RegExp("^((?=.*[a-z])(?=.*[A-Z])(?!.*\\s)(?=.*[@$!%*?&])).{8,15}$");
+        if (!regex.test(e.target.value)) {
+            setPasError({
+                ...pasError,
+                er: true,
+                msg: "Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"
+            });
         } else {
-            conpasField.setCustomValidity("")
+            setPasError({...pasError, er: false, msg: ""});
         }
     };
 
+    const passwordValidator = (e) => {
+        if (passDto.password !== passDto.conpassword) {
+            setPasError({...pasError, er: true, msg: "Password and Confirm password should be same"});
+        } else {
+            regexValid(e)
+        }
+    };
     return (
-        <div className={"container"}>
-            <div className="row">
-                <div className="col s12 center-align red lighten-1 white-text">
-                    <h3>Reset Password</h3>
-                </div>
-            </div>
-            <div className="row">
-                <form className="col s12" onSubmit={resetPassword}>
-                    <div className="row">
-                        <div className="input-field col s6">
-                            <i className="material-icons prefix">fingerprint</i>
-                            <input id={"pass"} type="password" className="validate" required={true}
-                                   pattern={"^((?=.*[a-z])(?=.*[A-Z])(?!.*\\s)(?=.*[@$!%*?&])).{8,15}$"}
-                                   value={passDto.password}
-                                   onChange={e => setPassDto({...passDto, password: e.target.value})}/>
-                            <label htmlFor="email">Password</label>
-                            <span className="helper-text"
-                                  data-error="Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"/>
-                        </div>
-                        <div className="input-field col s6">
-                            <input id={"confpassword"} type="password" required={true} value={passDto.conpassword}
-                                   onChange={e => setPassDto({...passDto, conpassword: e.target.value})}
-                                   onBlur={passwordValidator}/>
-                            <label htmlFor="confpassword">Confirm Password</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s6 right-align">
-                            <button className="btn waves-effect waves-light" type="submit">Reset
-                                <i className="material-icons right">send</i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
+        <Container className="d-flex justify-content-center my-5">
+            <Form onSubmit={resetPassword} className={"p-5 shadow-lg rounded"}>
+                <h2 className="border-bottom text-center text-uppercase mb-4 pb-3">Reset Password!!</h2>
+                <FormGroup as={Row}>
+                    <MaterialIcon icon="fingerprint" size={36} sm={"2"}/>
+                    <Col>
+                        <FormControl name="password" value={passDto.password} type="password" isInvalid={pasError.er}
+                                     required={true} onChange={changeValues} placeholder={"Password"}
+                                     onBlur={passwordValidator}/>
+                        <FormControl.Feedback type={"invalid"}>{pasError.msg}</FormControl.Feedback>
+                    </Col>
+                    <Col>
+                        <FormControl name="conpassword" value={passDto.conpassword} type="password"
+                                     isInvalid={pasError.er}
+                                     required={true} onChange={changeValues} onBlur={passwordValidator}
+                                     placeholder={"Confirm Password"}/>
+                        <FormControl.Feedback type={"invalid"}>{pasError.msg}</FormControl.Feedback>
+                    </Col>
+                </FormGroup>
+                <Container className="text-center">
+                    <Button className="mr-2" type={"submit"}>Reset</Button>
+                    <Button as={Link} className="ml-2" to={"/login"}>Login</Button>
+                </Container>
+
+            </Form>
+        </Container>)
 }
 
 export default ResetPassword

@@ -1,47 +1,50 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {Alert, Button, Container, Form, FormControl, FormGroup, Row} from "react-bootstrap";
 
 function Forgotpassword(props) {
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState(false);
+
     useEffect(() => {
         document.title = "Forgot Password"
     }, []);
     const sendResetMail = (e) => {
-        if (email) {
+        e.preventDefault();
+        if (!emailError) {
             axios.get(`/forgotpassword/${email}`).then(response => {
                 alert(response.data.response);
                 props.history.push(`/login`)
             }).catch((error) => alert(error.response.data.errorMessage))
         }
-        e.preventDefault();
     };
 
-    function emailvalidator(e) {
+    const emailvalidator = (e) => {
         let emailField = e.target;
         if (emailField.value !== "") {
             axios.get(`/email/${emailField.value}`)
                 .then((response) => {
-                    response.data.response ? emailField.setCustomValidity("") : emailField.setCustomValidity("Email not available in our system");
+                    response.data.response ? setEmailError(false) : setEmailError(true);
                 }).catch((error) => alert(error.data.errorMessage))
         }
-    }
+    };
 
     return (
-        <div className={"container"}>
-            <form className="col s12" onSubmit={sendResetMail}>
-                Please enter your email id:
-                <div className="input-field inline">
-                    <input id="email_inline" type="email" className="validate" value={email}
-                           onChange={e => setEmail(e.target.value)}
-                           pattern={"^[a-zA-z\\d._-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,4}$"} onBlur={emailvalidator}/>
-                    <label htmlFor="email_inline">Email</label>
-                    <span className="helper-text" data-error="Enter valid email"/>
-                </div>
-                <div className="input-field inline">
-                    <button className={"btn waves-effect waves-light"} type={"submit"}>Submit</button>
-                </div>
-            </form>
-        </div>
+        <Container className="d-flex justify-content-center my-5">
+            <Form onSubmit={sendResetMail} className={"p-5 shadow-lg rounded"}>
+                <h2 className="border-bottom text-center text-uppercase mb-4 pb-3">Forgot Password!!</h2>
+                <FormGroup>
+                        <FormControl name="eid" className="text-center"
+                                     pattern={"^[a-zA-z\\d._-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,4}$"}
+                                     value={email}
+                                     required={true} onChange={e => setEmail(e.target.value)}
+                                     onBlur={emailvalidator} placeholder={"Please enter your email id"}/>
+                        <FormControl.Feedback type={"invalid"}>Enter valid email</FormControl.Feedback>
+                        <Alert hidden={!emailError} variant={"danger"}>Email not registered</Alert>
+                </FormGroup>
+                <Button className={"w-100"} type={"submit"}>Submit</Button>
+            </Form>
+        </Container>
     )
 }
 

@@ -26,13 +26,10 @@ function Login(props) {
             } else {
                 setValidated(true)
             }
-        }
-    ;
+        };
+
     const updateValue = e => setLoginData({...loginData, [e.target.name]: e.target.value});
 
-    const gotoReg = () => {
-        props.history.push(`/register`)
-    };
     if (jwt) {
         return <Redirect to={{pathname: "/api/dash", state: {jwt: jwt}}}/>
     } else {
@@ -66,7 +63,7 @@ function Login(props) {
                     <Link to={"/forgotpassword"}>Forgot Password?</Link>
                     <ButtonToolbar className="py-2">
                         <Button size={"md"} type={"submit"} className="mr-2">Login</Button>
-                        <Button size={"md"} className="mr-2" onClick={gotoReg}>Register</Button>
+                        <Button as={Link} className="mr-2" to={"/register"}>Register</Button>
                     </ButtonToolbar>
                 </Form>
             </Container>
