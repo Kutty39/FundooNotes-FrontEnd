@@ -6,7 +6,6 @@ import Register from "./components/Register";
 import Activate from "./components/Activate";
 import Forgotpassword from "./components/Forgotpassword";
 import ResetPassword from "./components/ResetPassword";
-import Dash1 from "./components/Dash1";
 import Dash from "./components/Dash";
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
                     <Route path={"/reset/:jwt"} exact component={ResetPassword}/>
                     <Route path={"/login"} exact component={Login}/>
                     <Route path={"/api/dash"} exact component={Dash}/>
-                    <Route path={"/api/dash1"} exact component={Dash1}/>
                 </Switch>
             </Router>
        // </div>

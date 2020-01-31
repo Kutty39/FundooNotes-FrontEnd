@@ -1,0 +1,14 @@
+.navBtn{
+    background: transparent;
+    border: 0;
+    border-radius: 75%;
+    color:#282c34;
+}
+
+.navBtn:hover{
+   background-color: #cfd8dc;
+    color:#282c34;
+}
+.sideactive{
+    background-color: #e2e6ea;
+}

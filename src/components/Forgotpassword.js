@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Alert, Button, Container, Form, FormControl, FormGroup, Row} from "react-bootstrap";
+import {Alert, Button, Container, Form, FormControl, FormGroup} from "react-bootstrap";
 
 function Forgotpassword(props) {
     const [email, setEmail] = useState("");
