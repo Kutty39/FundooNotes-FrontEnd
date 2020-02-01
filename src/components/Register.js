@@ -59,7 +59,7 @@ function Register(props) {
         if (emailField.value !== "") {
             axios.get(`/email/${emailField.value}`)
                 .then((response) => {
-                    response.data.response ? setEmailError(false) : setEmailError(true);
+                    response.data.response ? setEmailError(true) : setEmailError(false);
                 }).catch((error) => alert(error.data.errorMessage))
         }
     };
@@ -91,7 +91,7 @@ function Register(props) {
                                          required={true} onChange={changeValues}
                                          onBlur={emailvalidator} placeholder={"Email ID"}/>
                             <FormControl.Feedback type={"invalid"}>Enter valid email</FormControl.Feedback>
-                            <Alert hidden={emailError} variant={"danger"}>Email already registered</Alert>
+                            <Alert hidden={!emailError} variant={"danger"}>Email already registered</Alert>
                         </Col>
                     </Row>
                 </FormGroup>

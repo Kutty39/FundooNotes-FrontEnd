@@ -4,7 +4,7 @@ import SideNavButton from "./SideNavButton";
 import MaterialIcon from "react-google-material-icons";
 
 export default function LabelAddMenu(props) {
-    const [show, setShow] = useState({model: false});
+    const [show, setShow] = useState({model: false, editIcon: "label"});
     const inRef = useRef(null);
     const [ic, setIc] = useState("add");
     const [labels, setLables] = props.labelList;
@@ -25,8 +25,34 @@ export default function LabelAddMenu(props) {
 
     const addLabel = () => {
         if (inRef.current.value !== "") {
-            setLables([...labels, inRef.current.value])
-            inRef.current.value="";
+            setLables([...labels, inRef.current.value]);
+            inRef.current.value = "";
+        }
+    };
+
+    const editLabel = (labelName) => {
+        const newLabelList = labels.map(label => {
+            if (label === labelName) {
+                return document.getElementById(labelName).value
+            }
+            return label
+        });
+        setLables(newLabelList);
+    };
+
+    const showDelete = (id) => {
+        document.getElementById(id).getElementsByTagName("i")[0].innerText = "delete"
+    };
+    const hideDelete = (id) => {
+        document.getElementById(id).getElementsByTagName("i")[0].innerText = "label"
+    };
+
+    const deleteLabel = (id) => {
+        if (window.confirm("Are you sure? label will be permanently deleted")) {
+            const newLabelList = labels.filter(label => {
+                return label !== id;
+            });
+            setLables(newLabelList);
         }
     };
     return (
@@ -34,22 +60,28 @@ export default function LabelAddMenu(props) {
             <SideNavButton variant={props.variant} onClick={handleShow} icon={props.icon}
                            innerText={props.innerText}/>
 
-            <Modal show={show.model} onHide={handleClose}>
+            <Modal show={show.model} onHide={handleClose} centered>
                 <InputGroup className="p-2">
                     <Button className="navBtn" variant={"light"} onClick={focusInput}><MaterialIcon icon={ic}/></Button>
                     <FormControl className="border-top-0 border-left-0 border-right-0 border-bottom-0 mx-2" ref={inRef}
-                                 placeholder={"Create new label"}/>
+                                 placeholder={"Create new label"} onFocus={focusInput}/>
                     <Button className="navBtn" variant={"light"} onClick={addLabel}><MaterialIcon
                         icon={"check"}/></Button>
                 </InputGroup>
                 {labels.map(label => (
-                    <InputGroup className="p-2">
-                        <Button className="navBtn" variant={"light"} onClick={focusInput}><MaterialIcon
-                            icon={"label"}/></Button>
-                        <FormControl className="border-top-0 border-left-0 border-right-0 border-bottom-0 mx-2" value={label}/>
-                        <Button className="navBtn" variant={"light"} onClick={addLabel}><MaterialIcon
-                            icon={"edit"}/></Button>
-                    </InputGroup>
+                    <div key={label} onMouseOver={() => showDelete(label + "icon")}
+                         onMouseLeave={() => hideDelete(label + "icon")}>
+                        <InputGroup className="p-2">
+                            <Button id={label + "icon"} className="navBtn" variant={"light"}
+                                    onClick={() => deleteLabel(label)}><MaterialIcon
+                                icon={"label"}/></Button>
+                            <FormControl id={label}
+                                         className="border-top-0 border-left-0 border-right-0 border-bottom-0 mx-2"
+                                         defaultValue={label}/>
+                            <Button name={label} className="navBtn" variant={"light"} onClick={() => editLabel(label)}>
+                                <MaterialIcon icon={"edit"}/></Button>
+                        </InputGroup>
+                    </div>
                 ))}
                 <div className="text-right p-2">
                     <Button variant={"light"} onClick={handleClose}>Close</Button>

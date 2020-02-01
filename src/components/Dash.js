@@ -12,8 +12,51 @@ export default function Dash() {
         hideProf: true,
         activeColor: "transparent",
         viewText: "List View",
-        viewIcon: "list"
+        viewIcon: "list",
+        sideNav:false
     });
+    const [notes,setNotes]=useState([
+            {
+                noteId: 1,
+                noteTitle: "string",
+                noteText: "fssdafsd",
+                noteRemainder: "2020-01-10T10:00:00.000+0000",
+                noteRemainderLocation: "string",
+                showTick: false,
+                noteCreatedOn: "2020-02-01T12:57:55.000+0000",
+                noteLastEditedOn: null,
+                colors: {
+                    colorId: 4,
+                    colorName: "White"
+                },
+                noteStatus: {
+                    statusId: 1,
+                    statusText: "Active"
+                },
+                createdBy: {
+                    userId: 3,
+                    fname: "Tamilselvan",
+                    lname: "S",
+                    eid: "tamil.uonly@gmail.com",
+                    phn: "9988774455",
+                    adrs: "fasdfsda",
+                    userCreatedOn: "2020-01-17T11:23:52.000+0000",
+                    userLastModifiedOn: "2020-01-17T11:24:35.000+0000",
+                    userStatus: {
+                        statusId: 1,
+                        statusText: "Active"
+                    }
+                },
+                editedBy: null,
+                labels: [
+                    {
+                        labelId: 1,
+                        labelText: "Tamil"
+                    }
+                ],
+                pinned: true
+            }
+            ]);
     const searchRef = useRef(null);
     const changeView = () => {
         console.log("fsda");
@@ -25,10 +68,10 @@ export default function Dash() {
     };
     return (
         <div>
-            <Navbar sticky={"top"} bg={"light"} className="overflow-hidden border-bottom">
-                <MyToolTip text={"Menu"}><Button variant={"light"}><MaterialIcon icon={"menu"}/></Button></MyToolTip>
+            <Navbar fixed={"top"} bg={"light"} className="overflow-hidden border-bottom">
+                <MyToolTip text={"Menu"}><Button variant={"light"} onClick={()=>{setObj({...Obj,sideNav:!Obj.sideNav})}}><MaterialIcon icon={"menu"}/></Button></MyToolTip>
                 <NavbarBrand><MaterialIcon icon={"speaker_notes"}/>FundooNotes</NavbarBrand>
-                <InputGroup className="mx-2 p-2" style={{backgroundColor: '#eceff1'}}>
+                <InputGroup className="mx-2 p-2" style={{backgroundColor: '#eceff1',borderRadius: "20px"}}>
                     <MyToolTip text={"Search"}><Button className="navBtn" size={"sm"}
                                                        onClick={e => searchRef.current.focus()}><MaterialIcon
                         icon={"search"}/></Button></MyToolTip>
@@ -43,12 +86,10 @@ export default function Dash() {
                     <Button variant={"light"} className="p-0" as={Image} src={Prof} width={50}
                             height={50}  onClick={e=>setObj({...Obj,hideProf: !Obj.hideProf})} roundedCircle/>
                 </MyToolTip>
-
             </Navbar>
-            <div>
+            <div style={{marginTop:"70px"}}>
                 <ProfileMenu src={Prof} email={"tamil.uonly@gmail.com"} hide={Obj.hideProf}/>
-                <SideNav />
-                <div>fsdgfksdkj</div>
+                <SideNav hidden={Obj.sideNav}/>
             </div>
         </div>
     )

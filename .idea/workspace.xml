@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/LabelAddMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LabelCreater.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MyToolTip.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SideNavButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dash1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forgotpassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forgotpassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Root.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Root.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/css/mycss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/css/mycss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LabelAddMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelAddMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyToolTip.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyToolTip.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideNavButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNavButton.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +120,8 @@
       <workItem from="1580363998780" duration="3306000" />
       <workItem from="1580367732570" duration="4962000" />
       <workItem from="1580383489880" duration="6186000" />
-      <workItem from="1580444843641" duration="28998000" />
+      <workItem from="1580444843641" duration="29206000" />
+      <workItem from="1580532695870" duration="17847000" />
     </task>
     <servers />
   </component>
@@ -141,10 +137,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="311" y="58" width="800" height="677" key="#Plugins/67.27.1299.741@67.27.1299.741" timestamp="1579161041545" />
-    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580363917010">
+    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580536728267">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1580363917010" />
+    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1580536728267" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580368162256">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -157,22 +153,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1579168517481" />
-    <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1580392893261">
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1580551014569">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1580392893261" />
-    <state width="1253" height="175" key="GridCell.Tab.0.center" timestamp="1580392893260">
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1580551014569" />
+    <state width="1253" height="175" key="GridCell.Tab.0.center" timestamp="1580551014568">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1580392893260" />
-    <state width="1253" height="175" key="GridCell.Tab.0.left" timestamp="1580392893260">
+    <state width="1253" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1580551014568" />
+    <state width="1253" height="175" key="GridCell.Tab.0.left" timestamp="1580551014567">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1580392893260" />
-    <state width="1253" height="175" key="GridCell.Tab.0.right" timestamp="1580392893261">
+    <state width="1253" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1580551014567" />
+    <state width="1253" height="175" key="GridCell.Tab.0.right" timestamp="1580551014568">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1580392893261" />
+    <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1580551014568" />
     <state width="1253" height="219" key="GridCell.Tab.1.bottom" timestamp="1579701527348">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
