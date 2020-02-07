@@ -22,7 +22,7 @@ function ResetPassword(props) {
                 alert(response.data.response);
                 props.history.push(`/login`)
             })
-            .catch(error => alert(error.response.data.errorMessage))
+            .catch(error => alert(error.response.data.message))
     };
 
 

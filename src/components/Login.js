@@ -18,9 +18,7 @@ function Login(props) {
             if (e.target.checkValidity()) {
                 axios.post("/login", loginData).then((resp) => setJwt(resp.data.response))
                     .catch((er) => {
-                        console.log(er.response.data);
-                        setHidata({...hidata, hid: false});
-                        setHidata({...hidata, hidtext: er.response.data.errorMessage});
+                        setHidata({...hidata, hid: false,hidtext: er.response.data.message});
                         console.log(hidata.hidtext)
                     })
             } else {

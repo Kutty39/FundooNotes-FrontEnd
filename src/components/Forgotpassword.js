@@ -15,7 +15,7 @@ function Forgotpassword(props) {
             axios.get(`/forgotpassword/${email}`).then(response => {
                 alert(response.data.response);
                 props.history.push(`/login`)
-            }).catch((error) => alert(error.response.data.errorMessage))
+            }).catch((error) => alert(error.response.data.message))
         }
     };
 
@@ -25,7 +25,7 @@ function Forgotpassword(props) {
             axios.get(`/email/${emailField.value}`)
                 .then((response) => {
                     response.data.response ? setEmailError(false) : setEmailError(true);
-                }).catch((error) => alert(error.data.errorMessage))
+                }).catch((error) => alert(error.data.message))
         }
     };
 

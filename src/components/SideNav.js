@@ -4,8 +4,7 @@ import SideNavButton from "./SideNavButton";
 import LabelAddMenu from "./LabelAddMenu"
 
 export default function SideNav(props) {
-    const [bgCol, setBgCol] = useState("light");
-    const [labels,setLables]=useState(["tamil","selvan","s","v"]);
+    const [labels,setLables]=props.labels;
     let butRef = useRef(null);
     const makeActive = (e) => {
         if (butRef.current === null) {
@@ -17,17 +16,22 @@ export default function SideNav(props) {
         butRef.classList.add("sideactive")
     };
     return (
-        <Container className="border border-top-0 position-fixed overflow-auto"
-             style={{position: "absolute", width: "300px", height: "100%",transition: "width"}} hidden={props.hidden}>
+        <Container className="border border-top-0 position-fixed h-100 overflow-auto bg-light"
+             style={{width: "300px",transition: "width"}} hidden={props.hidden}>
             <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
-                <SideNavButton variant={bgCol} onClick={makeActive} icon={"event_note"} innerText={"Note"}/>
-                <SideNavButton variant={bgCol} onClick={makeActive} icon={"notification_important"}
+                <SideNavButton variant={"light"} onClick={makeActive} icon={"event_note"} innerText={"Note"}/>
+                <SideNavButton variant={"light"} onClick={makeActive} icon={"notification_important"}
                                innerText={"Remainder"}/>
             </ListGroup>
             <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
                 <small className="p-3">LABELS</small>
-                {labels.map(label=>(<SideNavButton key={label} variant={bgCol} onClick={makeActive} icon={"label"} innerText={label}/>))}
-                <LabelAddMenu labelList={[labels,setLables]} variant={bgCol} onClick={makeActive} icon={"edit"} innerText={"Edit Label"}/>
+                {labels.map(label=>(<SideNavButton key={label} variant={"light"} onClick={makeActive} icon={"label"} innerText={label}/>))}
+                <LabelAddMenu labelList={[labels,setLables]} variant={"light"} onClick={makeActive} icon={"edit"} innerText={"Edit Label"}/>
+            </ListGroup>
+            <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
+                <SideNavButton variant={"light"} onClick={makeActive} icon={"archive"} innerText={"Archive"}/>
+                <SideNavButton variant={"light"} onClick={makeActive} icon={"delete"}
+                               innerText={"Trash"}/>
             </ListGroup>
         </Container>
     )

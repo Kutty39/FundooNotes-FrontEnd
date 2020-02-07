@@ -60,7 +60,7 @@ function Register(props) {
             axios.get(`/email/${emailField.value}`)
                 .then((response) => {
                     response.data.response ? setEmailError(true) : setEmailError(false);
-                }).catch((error) => alert(error.data.errorMessage))
+                }).catch((error) => alert(error.data.message))
         }
     };
 

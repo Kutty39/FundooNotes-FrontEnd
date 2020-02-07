@@ -60,7 +60,7 @@ export default function LabelAddMenu(props) {
             <SideNavButton variant={props.variant} onClick={handleShow} icon={props.icon}
                            innerText={props.innerText}/>
 
-            <Modal show={show.model} onHide={handleClose} centered>
+            <Modal size="sm" show={show.model} onHide={handleClose} centered>
                 <InputGroup className="p-2">
                     <Button className="navBtn" variant={"light"} onClick={focusInput}><MaterialIcon icon={ic}/></Button>
                     <FormControl className="border-top-0 border-left-0 border-right-0 border-bottom-0 mx-2" ref={inRef}
