@@ -1,37 +1,47 @@
-import React, {useRef, useState} from "react";
+import React, {useContext} from "react";
 import {Container, ListGroup} from "react-bootstrap";
 import SideNavButton from "./SideNavButton";
 import LabelAddMenu from "./LabelAddMenu"
+import {Context} from "./Context";
 
 export default function SideNav(props) {
-    const [labels,setLables]=props.labels;
-    let butRef = useRef(null);
-    const makeActive = (e) => {
-        if (butRef.current === null) {
-            butRef = e.target;
-        } else {
-            butRef.classList.remove("sideactive");
-            butRef = e.target;
+    const context = useContext(Context);
+    const userlabels = context.userlabels;
+    const makeActive = (value, islabel) => {
+        console.log(value, islabel);
+        if (islabel) {
+            context.labelSelection(value);
+       } else if(value==="Remainder"){
+            context.remaiderNote();
+        }else{
+            context.statusUpdate(value);
         }
-        butRef.classList.add("sideactive")
     };
     return (
-        <Container className="border border-top-0 position-fixed h-100 overflow-auto bg-light"
-             style={{width: "300px",transition: "width"}} hidden={props.hidden}>
-            <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
-                <SideNavButton variant={"light"} onClick={makeActive} icon={"event_note"} innerText={"Note"}/>
-                <SideNavButton variant={"light"} onClick={makeActive} icon={"notification_important"}
-                               innerText={"Remainder"}/>
-            </ListGroup>
-            <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
-                <small className="p-3">LABELS</small>
-                {labels.map(label=>(<SideNavButton key={label} variant={"light"} onClick={makeActive} icon={"label"} innerText={label}/>))}
-                <LabelAddMenu labelList={[labels,setLables]} variant={"light"} onClick={makeActive} icon={"edit"} innerText={"Edit Label"}/>
-            </ListGroup>
-            <ListGroup vertical={"true"} className="border-bottom py-2 w-100 pr-2">
-                <SideNavButton variant={"light"} onClick={makeActive} icon={"archive"} innerText={"Archive"}/>
-                <SideNavButton variant={"light"} onClick={makeActive} icon={"delete"}
-                               innerText={"Trash"}/>
+        <Container className="pl-0 border border-top-0 position-absolute h-100 overflow-auto bg-light"
+                   style={{width: "300px", transition: "width", paddingBottom: "15%"}} hidden={props.hidden}>
+            <ListGroup className="border-bottom w-100">
+                <div className="border-bottom py-2 w-100 pr-2">
+                    <SideNavButton variant={"light"} onClick={() => makeActive("Active", false)}
+                                   icon={"event_note"} innerText={"Note"}/>
+                    <SideNavButton variant={"light"} onClick={()=>makeActive("Remainder", false)}
+                                   icon={"notification_important"}
+                                   innerText={"Remainder"}/>
+                </div>
+                <div className="border-bottom py-2 w-100 pr-2">
+                    <small className="p-3">LABELS</small>
+                    {userlabels.map(label => (
+                        <SideNavButton key={label} variant={"light"} onClick={() => makeActive(label, true)}
+                                       icon={"label"}
+                                       innerText={label}/>))}
+                    <LabelAddMenu variant={"light"} icon={"edit"} innerText={"Edit Label"}/>
+                </div>
+                <div className="border-bottom py-2 w-100 pr-2">
+                    <SideNavButton variant={"light"} onClick={() => makeActive("Archive", false)} icon={"archive"}
+                                   innerText={"Archive"}/>
+                    <SideNavButton variant={"light"} onClick={() => makeActive("Trash", false)} icon={"delete"}
+                                   innerText={"Trash"}/>
+                </div>
             </ListGroup>
         </Container>
     )

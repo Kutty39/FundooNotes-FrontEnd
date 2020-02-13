@@ -1,27 +1,32 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import MyTag from "./MyTag";
 import {Button, ButtonToolbar, Dropdown, Form, FormControl, InputGroup, Row} from "react-bootstrap";
 import CoblPop from "./ColbPop";
 import {Typeahead} from "react-bootstrap-typeahead";
 import {IoMdTime} from "react-icons/io";
-import {MdAccountCircle, MdAdd, MdAddAlert, MdArchive, MdColorLens, MdDelete, MdDone, MdLabel} from "react-icons/md";
+import {
+    MdAccountCircle,
+    MdAdd,
+    MdAddAlert,
+    MdArchive,
+    MdColorLens,
+    MdDelete,
+    MdDone,
+    MdLabel,
+    MdUnarchive
+} from "react-icons/md";
+import {Context} from "./Context";
 
 export default function NoteToolBar(props) {
-    const [noteHide, setNoteHide] = props.noteHide;
+    const context = useContext(Context);
     const colr = ["white", "#ffcdd2", "#ffe0b2", "#fff59d", "#e6ee9c", "#e1f5fe", "#d7ccc8", "#e1bee7", "#f1f8e9"];
     const [showStatus, setShowStatus] = useState(false);
-    const [toastContent, setToastContent] = props.toastcontent;
-    const [undo, setUndo] = props.undo;
-    const [prevChange, setPrevChange] = useState({});
     const [remDetail, setRemDetail] = useState({date: "", time: "", location: ""});
-    const [userlabels, setUserlabels] = props.userLabels;
+    const userlabels = context.userlabels;
     const [note, setNote] = props.note;
     useEffect(() => {
-        if (undo) {
-            setNote(prevChange);
-            setUndo(false);
-        }
-    }, [undo]);
+        setNote(props.note[0]);
+    }, [props]);
     useEffect(() => {
         if (note.noteText !== "" || note.noteTitle !== "" || note.collaborator.length > 0 || note.noteRemainder !== null) {
             setShowStatus(true);
@@ -30,54 +35,89 @@ export default function NoteToolBar(props) {
         }
     }, [note]);
 
-    const removeReminder = () => {
-        setPrevChange(note);
-        setNote({...note, noteRemainder: "", noteRemainderLocation: ""});
-        setRemDetail({date: "", time: "", location: ""});
-        setToastContent("Reminder Deleted")
-    };
-    const removeColData = (data) => {
-        setPrevChange(note);
-        setNote({
-            ...note, collaborator: note.collaborator.filter(colb => {
-                return colb !== data;
-            })
-        });
-        setToastContent("Collaborator Deleted")
-    };
     const updateRem = (isOpen) => {
         if (!isOpen && (remDetail.date !== "")) {
-            setNote({
-                ...note,
-                noteRemainder: remDetail.date + " " + remDetail.time,
-                noteRemainderLocation: remDetail.location
-            });
+            let dt = new Date();
+            let tm = dt.toLocaleTimeString();
+            let dt1 = remDetail.date + " " + (remDetail.time === "" ? tm : remDetail.time);
+            let rmdt = new Date(dt1);
+            if (dt < rmdt) {
+                setNote({
+                    ...note,
+                    noteRemainder: remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time),
+                    noteRemainderLocation: remDetail.location
+                });
+                context.setNotes(context.notes.map(value => {
+                    if (value.noteId === note.noteId) {
+                        value.noteRemainder = remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time);
+                        value.noteRemainderLocation = remDetail.location;
+                        context.updateNote(value);
+                    }
+                    return value;
+                }));
+            } else {
+                alert("please select any future date and time");
+            }
         } else {
             initRem()
         }
     };
     const initRem = () => {
-        let regExp = new RegExp("(\\d{2})/(\\d{2})/(\\d{4}) (\\d{2}):(\\d{2}):(\\d{2}) ([amp]{2})");
-        if (note.noteRemainder !== "") {
-            if (regExp.test(note.noteRemainder)) {
-                let dt = regExp.exec(note.noteRemainder);
-                setRemDetail({
-                    ...remDetail,
-                    date: dt[3] + "-" + dt[2] + "-" + dt[1],
-                    time: ((dt[7] === "pm") ? (dt[4] + 12) : dt[4]) + ":" + dt[5],
-                    location: note.noteRemainderLocation
-                })
-            }
+        /*let regExp = new RegExp("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})");*/
+
+        if (note.noteRemainder !== "" && note.noteRemainder !== null) {
+            let dt = note.noteRemainder.split(" ")[0];
+            let tm = note.noteRemainder.split(" ")[1];
+            setRemDetail({
+                ...remDetail,
+                date: dt,
+                time: tm,
+                location: note.noteRemainderLocation
+            })
         }
     };
-    const removeLabelData = (lbl) => {
-        setPrevChange(note);
-        setNote({
-            ...note, labels: note.labels.filter(lbl1 => {
-                return lbl1 !== lbl;
-            })
+
+    const removeReminder = () => {
+        context.setPrvNote({
+            id: note.noteId,
+            field: "noteRemainder|:|noteRemainderLocation",
+            value: note.noteRemainder + "|:|" + note.noteRemainderLocation
         });
-        setToastContent("Label Deleted")
+        setNote({...note, noteRemainder: "", noteRemainderLocation: ""});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.noteRemainder = "";
+                value.noteRemainderLocation = "";
+                context.updateNote(value);
+            }
+            return value;
+        }));
+        setRemDetail({date: "", time: "", location: ""});
+        context.setToastContent("Reminder Deleted")
+    };
+    const removeColData = (data) => {
+        context.setPrvNote({id: note.noteId, field: "collaborator", value: note.collaborator});
+        setNote({...note, collaborator: note.collaborator.filter(colb => colb !== data)});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.collaborator = value.collaborator.filter(colb => colb !== data);
+                context.updateNote(value);
+            }
+            return value;
+        }));
+        context.setToastContent("Collaborator Deleted")
+    };
+    const removeLabelData = (lbl) => {
+        context.setPrvNote({id: note.noteId, field: "labels", value: note.labels});
+        setNote({...note, labels: note.labels.filter(lbl1 => lbl1 !== lbl)});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.labels = value.labels.filter(lbl1 => lbl1 !== lbl);
+                context.updateNote(value);
+            }
+            return value;
+        }));
+        context.setToastContent("Label Deleted")
     };
     const notelist = (labellist) => {
         let arr = [];
@@ -92,19 +132,40 @@ export default function NoteToolBar(props) {
                 arr.push(str);
             }
             if (!userlabels.includes(str)) {
-                setUserlabels([...userlabels, str]);
+                context.saveLabel(str);
             }
         });
         setNote({...note, labels: arr});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.labels = arr;
+                console.log(value);
+                context.updateNote(value);
+            }
+            return value;
+        }));
     };
 
     const saveAndClose = () => {
-        setNoteHide(true);
-        props.save(showStatus,note);
+        props.noteSave(showStatus);
     };
+
+    const colorChange = (clr) => {
+        setNote({...note, colour: clr});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.colour = clr;
+                context.updateNote(value);
+            }
+            return value;
+        }));
+
+    };
+
+    /*if(Object.entries(note).length>0 && note.constructor === Object){*/
     return (
         <>
-            <div className="row ml-1 p-2 w-100" hidden={noteHide}>
+            <div className="row ml-1 p-2 w-100" hidden={props.noteHide}>
                 {((note.noteRemainder !== null && note.noteRemainder !== "") || note.noteRemainderLocation !== "") ?
                     <MyTag icon={<IoMdTime/>} id={"reminder"}
                            data={(note.noteRemainder !== null ? note.noteRemainder : "") + " " + note.noteRemainderLocation}
@@ -115,18 +176,19 @@ export default function NoteToolBar(props) {
                                       removeLabelData(lbl)
                                   }}/>
                 })}
-                {note.collaborator.map((colb, id) => {
-                    return <MyTag icon={<MdAccountCircle/>} key={"colb"+ note.noteId + id} id={"colb" + note.noteId + id} data={colb}
+                {note.collaborator.filter(colb => colb !== context.myID).map((colb, id) => {
+                    return <MyTag icon={<MdAccountCircle/>} key={"colb" + note.noteId + id}
+                                  id={"colb" + note.noteId + id} data={colb}
                                   onCloseIconClick={() => {
                                       removeColData(colb)
                                   }}/>
                 })}
             </div>
-            <InputGroup className="p-2 w-100" hidden={noteHide}>
+            <InputGroup className="p-2 w-100" hidden={props.noteHide}>
                 <ButtonToolbar>
                     <Dropdown onToggle={isOpen => updateRem(isOpen)}>
-                        <Dropdown.Toggle as={Button} className="rounded-circle bg-transparent" variant={"light"}
-                                         bsPrefix="dropdown">
+                        <Dropdown.Toggle as={Button} className="rounded-circle bg-transparent mr-1" variant={"light"}
+                                         bsPrefix="dropdown" style={{paddingRight: "6px", paddingLeft: "6px"}}>
                             <MdAddAlert size={"20"}/>
                         </Dropdown.Toggle>
                         <Dropdown.Menu className="p-2 text-center">
@@ -147,8 +209,8 @@ export default function NoteToolBar(props) {
                     </Dropdown>
                     <CoblPop colab={[note, setNote]}/>
                     <Dropdown onToggle={isOpen => updateRem(isOpen)}>
-                        <Dropdown.Toggle as={Button} className="rounded-circle bg-transparent" variant={"light"}
-                                         bsPrefix="dropdown">
+                        <Dropdown.Toggle as={Button} className="rounded-circle bg-transparent mr-1" variant={"light"}
+                                         bsPrefix="dropdown" style={{paddingRight: "6px", paddingLeft: "6px"}}>
                             <MdColorLens size={"20"}/>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -159,10 +221,9 @@ export default function NoteToolBar(props) {
                                             return id < 3
                                         }).map((clr, id) => (
                                             <Button key={id} className="col-3 rounded-circle border p-0"
-                                                    style={{backgroundColor: clr}} onClick={() => setNote({
-                                                ...note,
-                                                colour: clr
-                                            })}>{clr === note.colour ? <MdDone style={{color: "black"}}/> : ""}</Button>
+                                                    style={{backgroundColor: clr}}
+                                                    onClick={() => colorChange(clr)}>{clr === note.colour ?
+                                                <MdDone style={{color: "black"}}/> : ""}</Button>
                                         ))
                                     }
                                 </Row>
@@ -172,10 +233,9 @@ export default function NoteToolBar(props) {
                                             return id >= 3 && id < 6
                                         }).map((clr, id) => (
                                             <Button key={id} className="col-3 rounded-circle border p-0"
-                                                    style={{backgroundColor: clr}} onClick={() => setNote({
-                                                ...note,
-                                                colour: clr
-                                            })}>{clr === note.colour ? <MdDone style={{color: "black"}}/> : ""}</Button>
+                                                    style={{backgroundColor: clr}}
+                                                    onClick={() => colorChange(clr)}>{clr === note.colour ?
+                                                <MdDone style={{color: "black"}}/> : ""}</Button>
                                         ))
                                     }
                                 </Row>
@@ -185,10 +245,9 @@ export default function NoteToolBar(props) {
                                             return id >= 6 && id < 9
                                         }).map((clr, id) => (
                                             <Button key={id} className="col-3 rounded-circle border p-0"
-                                                    style={{backgroundColor: clr}} onClick={() => setNote({
-                                                ...note,
-                                                colour: clr
-                                            })}>{clr === note.colour ? <MdDone style={{color: "black"}}/> : ""}</Button>
+                                                    style={{backgroundColor: clr}}
+                                                    onClick={() => colorChange(clr)}>{clr === note.colour ?
+                                                <MdDone style={{color: "black"}}/> : ""}</Button>
                                         ))
                                     }
                                 </Row>
@@ -196,8 +255,9 @@ export default function NoteToolBar(props) {
                         </Dropdown.Menu>
                     </Dropdown>
                     <Dropdown>
-                        <Dropdown.Toggle as={Button} className="p-1 rounded-circle mx-2 bg-transparent"
-                                         variant={"light"} bsPrefix="dropdown">
+                        <Dropdown.Toggle as={Button} className="rounded-circle mr-1 bg-transparent"
+                                         variant={"light"} bsPrefix="dropdown"
+                                         style={{paddingRight: "6px", paddingLeft: "6px"}}>
                             <MdLabel size={"20"}/><MdAdd/></Dropdown.Toggle>
                         <Dropdown.Menu>
                             <div className="text-uppercase font-weight-light pl-1">Label</div>
@@ -215,29 +275,24 @@ export default function NoteToolBar(props) {
                             />
                         </Dropdown.Menu>
                     </Dropdown>
+                    {showStatus ? context.noteStatus !== "Archive" ?
+                        <Button className="rounded-circle mr-1 bg-transparent" variant={"light"}
+                                onClick={props.noteArchive} style={{paddingRight: "6px", paddingLeft: "6px"}}><MdArchive
+                            size={"20"}/></Button> :
+                        <Button className="rounded-circle mr-1 bg-transparent" variant={"light"}
+                                onClick={props.noteUnArchive}
+                                style={{paddingRight: "6px", paddingLeft: "6px"}}><MdUnarchive
+                            size={"20"}/></Button> : null}
                     {showStatus ?
-                        <Button className="p-1 rounded-circle mx-2 bg-transparent" variant={"light"} onClick={() => {
-                            setPrevChange(note);
-                            setNote({...note, noteStatus: "Archive"});
-                            setToastContent("Note Archived");
-                            saveAndClose();
-                        }}><MdArchive
-                            size={"20"}/></Button> : ""}
-                    {showStatus ?
-                        <Button className="p-1 rounded-circle mx-2 bg-transparent" variant={"light"} onClick={() => {
-                            setPrevChange(note);
-                            setNote({...note, noteStatus: "Delete"});
-                            setToastContent("Note Deleted");
-                            saveAndClose();
-                        }}><MdDelete
-                            size={"20"}/></Button>
-                        : ""}
+                        <Button className="rounded-circle mr-1 bg-transparent" variant={"light"}
+                                onClick={props.noteDelete} style={{paddingRight: "6px", paddingLeft: "6px"}}><MdDelete
+                            size={"20"}/></Button> : null}
                 </ButtonToolbar>
-                <div className="col-2">
-                    <Button className="p-1 rounded mx-2 bg-transparent" variant={"light"}
-                            onClick={saveAndClose}>Close</Button>
-                </div>
+                {props.closeButton ? <Button className="p-1 rounded mr-1 bg-transparent" variant={"light"}
+                                             onClick={saveAndClose}>Close</Button> : null}
             </InputGroup>
         </>
-    )
+    )/*}else{
+        return null;
+    }*/
 }

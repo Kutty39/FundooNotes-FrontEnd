@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="" />
+    <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/ActiveNotePanel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Context.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColbPop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColbPop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LabelAddMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelAddMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Note.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Note.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NoteModels.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteModels.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NoteToolBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteToolBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SideNavButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNavButton.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,6 +136,15 @@
       <workItem from="1580965372147" duration="23117000" />
       <workItem from="1581051672843" duration="3553000" />
       <workItem from="1581071163196" duration="8841000" />
+      <workItem from="1581132644490" duration="25440000" />
+      <workItem from="1581310781524" duration="22849000" />
+      <workItem from="1581397151687" duration="13086000" />
+      <workItem from="1581479541005" duration="1237000" />
+      <workItem from="1581483752444" duration="21054000" />
+      <workItem from="1581567168248" duration="1196000" />
+      <workItem from="1581570178714" duration="11521000" />
+      <workItem from="1581591171675" duration="594000" />
+      <workItem from="1581593604127" duration="8640000" />
     </task>
     <servers />
   </component>
@@ -135,10 +160,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="311" y="58" width="800" height="677" key="#Plugins/67.27.1299.741@67.27.1299.741" timestamp="1579161041545" />
-    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580536728267">
+    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1581570114838">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1580536728267" />
+    <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1581570114838" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580368162256">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -151,22 +176,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1579168517481" />
-    <state width="1253" height="219" key="GridCell.Tab.0.bottom" timestamp="1581084035568">
+    <state width="1253" height="100" key="GridCell.Tab.0.bottom" timestamp="1581574594620">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="219" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581084035568" />
-    <state width="1253" height="219" key="GridCell.Tab.0.center" timestamp="1581084035567">
+    <state width="1253" height="100" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581574594620" />
+    <state width="1253" height="100" key="GridCell.Tab.0.center" timestamp="1581574594618">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="219" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581084035567" />
-    <state width="1253" height="219" key="GridCell.Tab.0.left" timestamp="1581084035566">
+    <state width="1253" height="100" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581574594618" />
+    <state width="1253" height="100" key="GridCell.Tab.0.left" timestamp="1581574594617">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="219" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581084035566" />
-    <state width="1253" height="219" key="GridCell.Tab.0.right" timestamp="1581084035568">
+    <state width="1253" height="100" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581574594617" />
+    <state width="1253" height="100" key="GridCell.Tab.0.right" timestamp="1581574594619">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="219" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581084035568" />
+    <state width="1253" height="100" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581574594619" />
     <state width="1253" height="219" key="GridCell.Tab.1.bottom" timestamp="1581084035570">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -219,22 +244,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/67.27.1299.741@67.27.1299.741" timestamp="1580993209109" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581053305579">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581593702738">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581053305579" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581593702738" />
     <state x="361" y="127" width="710" height="538" key="find.popup" timestamp="1579847205363">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="361" y="127" width="710" height="538" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1579847205363" />
-    <state x="380" y="175" key="run.anything.popup" timestamp="1581083479568">
+    <state x="380" y="175" key="run.anything.popup" timestamp="1581339738871">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1581083479568" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580993209106">
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1581339738871" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581413689081">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1580993209106" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1581413689081" />
     <state x="112" y="150" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1579270129909">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

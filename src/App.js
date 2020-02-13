@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Activate from "./components/Activate";
 import Forgotpassword from "./components/Forgotpassword";
 import ResetPassword from "./components/ResetPassword";
+import ContextProvider from "./components/Context";
 import Dash from "./components/Dash";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
                     <Route path={"/forgotpassword"} exact component={Forgotpassword}/>
                     <Route path={"/reset/:jwt"} exact component={ResetPassword}/>
                     <Route path={"/login"} exact component={Login}/>
-                    <Route path={"/api/dash"} exact component={Dash}/>
+                    <Route path={"/api/dash"} exact component={ContextProvider}/>
                 </Switch>
             </Router>
        // </div>

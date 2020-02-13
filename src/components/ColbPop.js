@@ -1,10 +1,12 @@
-import React, {useState} from "react";
-import {Button, Form, FormControl, Image, Modal} from "react-bootstrap";
+import React, {useContext, useState} from "react";
+import {Button, Dropdown, Form, FormControl, Image, Modal} from "react-bootstrap";
 import {MdClose, MdPersonAdd} from "react-icons/md";
 import Prof from "./images.jpeg"
+import {Context} from "./Context";
 
 
 export default function CoblPop(props) {
+    const context =useContext(Context);
     const [note, setNote] = props.colab;
     const [colb, setColb] = useState(note.collaborator);
     const [cShow, setCshow] = useState(false);
@@ -25,12 +27,19 @@ export default function CoblPop(props) {
     };
     const saveColb = () => {
         setNote({...note, collaborator: colb});
+        context.setNotes(context.notes.map(value => {
+            if (value.noteId === note.noteId) {
+                value.collaborator = colb;
+                context.updateNote(value);
+            }
+            return value;
+        }));
         handleCshow();
     };
     return (
         <>
-            <Button className="p-1 rounded-circle mx-2 bg-transparent" variant={"light"}
-                    onClick={handleCshow}><MdPersonAdd
+            <Button className="rounded-circle mr-1 bg-transparent" variant={"light"}
+                    onClick={handleCshow} style={{paddingRight:"6px",paddingLeft:"6px"}}><MdPersonAdd
                 size={"20"}/></Button>
             <Modal show={cShow} onHide={handleCshow} centered>
                 <div className="p-3">

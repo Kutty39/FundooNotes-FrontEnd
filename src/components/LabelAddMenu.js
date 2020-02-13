@@ -1,13 +1,15 @@
-import React, {useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import {Button, FormControl, InputGroup, Modal} from "react-bootstrap";
 import SideNavButton from "./SideNavButton";
 import MaterialIcon from "react-google-material-icons";
+import {Context} from "./Context";
 
 export default function LabelAddMenu(props) {
+    const context=useContext(Context);
     const [show, setShow] = useState({model: false, editIcon: "label"});
     const inRef = useRef(null);
     const [ic, setIc] = useState("add");
-    const [labels, setLables] = props.labelList;
+    const labels =context.userlabels;
 
     const handleClose = () => setShow({...show, model: false});
     const handleShow = () => setShow({...show, model: true});
@@ -25,19 +27,18 @@ export default function LabelAddMenu(props) {
 
     const addLabel = () => {
         if (inRef.current.value !== "") {
-            setLables([...labels, inRef.current.value]);
+            console.log(inRef.current.value);
+            context.saveLabel(inRef.current.value);
             inRef.current.value = "";
         }
     };
 
     const editLabel = (labelName) => {
-        const newLabelList = labels.map(label => {
+        labels.forEach(label => {
             if (label === labelName) {
-                return document.getElementById(labelName).value
+                context.editLable(label, document.getElementById(labelName).value);
             }
-            return label
         });
-        setLables(newLabelList);
     };
 
     const showDelete = (id) => {
@@ -49,10 +50,7 @@ export default function LabelAddMenu(props) {
 
     const deleteLabel = (id) => {
         if (window.confirm("Are you sure? label will be permanently deleted")) {
-            const newLabelList = labels.filter(label => {
-                return label !== id;
-            });
-            setLables(newLabelList);
+            context.deleteLabel(id);
         }
     };
     return (

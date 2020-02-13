@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Button, FormControl, Image, InputGroup, Navbar, NavbarBrand, Row, Toast} from "react-bootstrap";
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {Button, Col, FormControl, Image, InputGroup, Navbar, NavbarBrand, Row, Toast} from "react-bootstrap";
 import MaterialIcon from "react-google-material-icons";
 import Prof from "./images.jpeg"
 import "./css/mycss.css"
@@ -7,15 +7,13 @@ import MyToolTip from "./MyToolTip";
 import ProfileMenu from "./ProfileMenu"
 import SideNav from "./SideNav";
 import Note from "./Note";
-import axios from "axios";
 import NoteModels from "./NoteModels";
+import {Context} from "./Context";
 
-export default function Dash(props) {
-    const header = {Authorization: "Bearer " + props.location.state.jwt};
+export default function Dash() {
+    const context=useContext(Context);
     const [listview, setListview] = useState("col-");
-    const [showA, setShowA] = useState(false);
-    const [undo, setUndo] = useState(false);
-    const [toastContent, setToastContent] = useState("");
+    const searchRef = useRef(null);
     const [Obj, setObj] = useState({
         hideProf: true,
         activeColor: "transparent",
@@ -24,35 +22,9 @@ export default function Dash(props) {
         sideNav: false,
         sideNavM: "300px"
     });
-    const inNote = {
-        noteId:0,
-        noteTitle: "",
-        noteText: "",
-        noteRemainder: null,
-        noteRemainderLocation: "",
-        showTick: false,
-        colour: "white",
-        noteStatus: "Active",
-        labels: [],
-        pinned: false,
-        collaborator: []
-    };
-    const [labels, setLables] = useState(["tamil", "selvan", "s", "v"]);
-    const [notes, setNotes] = useState([]);
-    useEffect(() => {
-        if (toastContent !== "") {
-            viewA();
-        }
-    }, [toastContent]);
-    useEffect(() => {
-        axios.get("/api/notes", {headers: header}).then(resp => setNotes(resp.data.response)).catch(err => {
-            alert("Your session is expired. please login again");
-            props.history.push("/login");
-        })
-    }, []);
-    const searchRef = useRef(null);
-    const viewA = () => setShowA(true);
-    const hideA = () => setShowA(false);
+
+    useEffect(()=>{document.title = "Dash Board"},[]);
+
     const changeView = () => {
         if (Obj.viewIcon !== "grid_on") {
             setObj({...Obj, viewIcon: "grid_on", viewText: "Grid View"});
@@ -62,14 +34,8 @@ export default function Dash(props) {
             setListview("col-");
         }
     };
-
     const sideNaveHid = () => {
         setObj({...Obj, sideNavM: `${Obj.sideNav ? "300px" : "40px"}`, sideNav: !Obj.sideNav})
-    };
-    const save = (isSave, note) => {
-        console.log("save Method");
-        if (isSave)
-            axios.post("/api/notes", note, {headers: header}).then(resp => setNotes([...notes, resp.data.response])).catch(err => console.log(err.response.data));
     };
     return (
         <div>
@@ -96,31 +62,29 @@ export default function Dash(props) {
             </Navbar>
             <div className="position-fixed w-100 h-100" style={{marginTop: "70px"}}>
                 <ProfileMenu src={Prof} email={"tamil.uonly@gmail.com"} hide={Obj.hideProf}/>
-                <SideNav labels={[labels, setLables]} hidden={Obj.sideNav}/>
-                <div className="justify-content-center p-5 overflow-auto h-100" style={{marginLeft: Obj.sideNavM}}>
-                    <Row className="text-center">
-                        <Note save={save} note={inNote} undo={[undo, setUndo]}
-                              toastcontent={[toastContent, setToastContent]} userLabels={[labels, setLables]}/>
-                    </Row>
-                    <Row className="mt-5 w-100">
-                        {notes.map((value, index) => {
-                            return <NoteModels list={listview} key={index} save={save} note={value}
-                                               undo={[undo, setUndo]}
-                                               toastcontent={[toastContent, setToastContent]}
-                                               userLabels={[labels, setLables]}/>
+                <SideNav hidden={Obj.sideNav}/>
+                <div className="p-5 overflow-auto h-100" style={{marginLeft: Obj.sideNavM}}>
+                    {context.noteStatus==="Active"||context.noteStatus===""?
+                    <Row className="text-center justify-content-center">
+                        <Note/>
+                    </Row>:null
+                    }
+                    <Row className="mt-5 w-100 mr-0 ml-0 justify-content-center">
+                        {context.notes.map((value, index) => {
+                            return <NoteModels list={listview} key={index} note={value}/>
                         })}
                     </Row>
                 </div>
+                <Toast show={context.show} onClose={context.hide} className="fixed-bottom" autohide>
+                    <Toast.Header className="bg-dark">
+                        <strong className="mr-2">{context.toastContent}</strong>
+                        <Button variant={"dark"} className="text-white" onClick={() => {
+                            context.setUndo(true);
+                            context.hide();
+                        }}><strong>UNDO</strong></Button>
+                    </Toast.Header>
+                </Toast>
             </div>
-            <Toast show={showA} onClose={hideA} className="fixed-bottom" autohide>
-                <Toast.Header className="bg-dark">
-                    <strong className="mr-2">{toastContent}</strong>
-                    <Button variant={"dark"} className="text-white" onClick={() => {
-                        setUndo(true);
-                        hideA()
-                    }}><strong>UNDO</strong></Button>
-                </Toast.Header>
-            </Toast>
         </div>
     )
 }

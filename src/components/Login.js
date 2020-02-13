@@ -29,7 +29,7 @@ function Login(props) {
     const updateValue = e => setLoginData({...loginData, [e.target.name]: e.target.value});
 
     if (jwt) {
-        return <Redirect to={{pathname: "/api/dash", state: {jwt: jwt}}}/>
+        return <Redirect to={{pathname: "/api/dash", state: {jwt: jwt,email:loginData.username}}}/>
     } else {
         return (
             <Container className="d-flex justify-content-center my-5">
