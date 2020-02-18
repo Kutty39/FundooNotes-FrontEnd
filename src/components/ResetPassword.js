@@ -14,7 +14,8 @@ function ResetPassword(props) {
 
     useEffect(() => {
         setHeader({...header, Authorization: props.match.params.jwt})
-    }, []);
+    }, [props]);
+
     const resetPassword = (e) => {
         e.preventDefault();
         axios.post(`/resetpassword`, passDto, {headers: header})

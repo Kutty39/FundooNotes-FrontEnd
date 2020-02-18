@@ -2,21 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ActiveNotePanel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Context.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ErrorBoundary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ActiveNotePanel.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ColbPop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColbPop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Context.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Context.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LabelAddMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelAddMenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MyTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyTag.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Note.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Note.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NoteModels.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteModels.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NoteToolBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteToolBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileMenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ResetPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideNavButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNavButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/beautiful-water-drop.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +150,12 @@
       <workItem from="1581567168248" duration="1196000" />
       <workItem from="1581570178714" duration="11521000" />
       <workItem from="1581591171675" duration="594000" />
-      <workItem from="1581593604127" duration="8640000" />
+      <workItem from="1581593604127" duration="8981000" />
+      <workItem from="1581658500764" duration="19289000" />
+      <workItem from="1581740322617" duration="16228000" />
+      <workItem from="1581915083720" duration="8720000" />
+      <workItem from="1581936012350" duration="4709000" />
+      <workItem from="1581997556111" duration="6673000" />
     </task>
     <servers />
   </component>
@@ -164,34 +175,34 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="399" y="124" width="624" height="544" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/67.27.1299.741@67.27.1299.741" timestamp="1581570114838" />
-    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580368162256">
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582003578961">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1580368162256" />
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1579781868224">
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1582003578961" />
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1581674941029">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1579781868224" />
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1581674941029" />
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1579168517481">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1579168517481" />
-    <state width="1253" height="100" key="GridCell.Tab.0.bottom" timestamp="1581574594620">
+    <state width="1253" height="100" key="GridCell.Tab.0.bottom" timestamp="1581760974808">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581574594620" />
-    <state width="1253" height="100" key="GridCell.Tab.0.center" timestamp="1581574594618">
+    <state width="1253" height="100" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581760974808" />
+    <state width="1253" height="100" key="GridCell.Tab.0.center" timestamp="1581760974806">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581574594618" />
-    <state width="1253" height="100" key="GridCell.Tab.0.left" timestamp="1581574594617">
+    <state width="1253" height="100" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581760974806" />
+    <state width="1253" height="100" key="GridCell.Tab.0.left" timestamp="1581760974806">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581574594617" />
-    <state width="1253" height="100" key="GridCell.Tab.0.right" timestamp="1581574594619">
+    <state width="1253" height="100" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581760974806" />
+    <state width="1253" height="100" key="GridCell.Tab.0.right" timestamp="1581760974807">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581574594619" />
+    <state width="1253" height="100" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581760974807" />
     <state width="1253" height="219" key="GridCell.Tab.1.bottom" timestamp="1581084035570">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -244,22 +255,26 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="254" height="198" key="ShowFilterAction_Filter_Popup/67.27.1299.741@67.27.1299.741" timestamp="1580993209109" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581593702738">
+    <state x="560" y="313" width="303" height="167" key="VCS.ChangelistChooser" timestamp="1582003279674">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581593702738" />
-    <state x="361" y="127" width="710" height="538" key="find.popup" timestamp="1579847205363">
+    <state x="560" y="313" width="303" height="167" key="VCS.ChangelistChooser/67.27.1299.741@67.27.1299.741" timestamp="1582003279674" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581936485553">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="361" y="127" width="710" height="538" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1579847205363" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581936485553" />
+    <state x="361" y="122" width="869" height="646" key="find.popup" timestamp="1582003703010">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="361" y="122" width="869" height="646" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1582003703010" />
     <state x="380" y="175" key="run.anything.popup" timestamp="1581339738871">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1581339738871" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581413689081">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581751566685">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1581413689081" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1581751566685" />
     <state x="112" y="150" key="vcs.ApplyPatchDifferentiatedDialog" timestamp="1579270129909">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

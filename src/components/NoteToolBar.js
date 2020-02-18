@@ -6,7 +6,6 @@ import {Typeahead} from "react-bootstrap-typeahead";
 import {IoMdTime} from "react-icons/io";
 import {
     MdAccountCircle,
-    MdAdd,
     MdAddAlert,
     MdArchive,
     MdColorLens,
@@ -44,12 +43,12 @@ export default function NoteToolBar(props) {
             if (dt < rmdt) {
                 setNote({
                     ...note,
-                    noteRemainder: remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time),
+                    noteRemainder: remDetail.date === "" ? null : (remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time)),
                     noteRemainderLocation: remDetail.location
                 });
                 context.setNotes(context.notes.map(value => {
                     if (value.noteId === note.noteId) {
-                        value.noteRemainder = remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time);
+                        value.noteRemainder = remDetail.date === "" ? null : (remDetail.date + " " + (remDetail.time === "" ? tm.slice(0, 5) : remDetail.time));
                         value.noteRemainderLocation = remDetail.location;
                         context.updateNote(value);
                     }
@@ -167,9 +166,9 @@ export default function NoteToolBar(props) {
         <>
             <div className="row ml-1 p-2 w-100" hidden={props.noteHide}>
                 {((note.noteRemainder !== null && note.noteRemainder !== "") || note.noteRemainderLocation !== "") ?
-                    <MyTag icon={<IoMdTime/>} id={"reminder"}
+                    <MyTag icon={<IoMdTime/>} id={"reminder"+ note.noteId}
                            data={(note.noteRemainder !== null ? note.noteRemainder : "") + " " + note.noteRemainderLocation}
-                           onCloseIconClick={removeReminder}/> : ""}
+                           onCloseIconClick={removeReminder}/> : null}
                 {note.labels.map((lbl, id) => {
                     return <MyTag key={"label" + note.noteId + id} id={"label" + note.noteId + id} data={lbl}
                                   onCloseIconClick={() => {
@@ -258,7 +257,7 @@ export default function NoteToolBar(props) {
                         <Dropdown.Toggle as={Button} className="rounded-circle mr-1 bg-transparent"
                                          variant={"light"} bsPrefix="dropdown"
                                          style={{paddingRight: "6px", paddingLeft: "6px"}}>
-                            <MdLabel size={"20"}/><MdAdd/></Dropdown.Toggle>
+                            <MdLabel size={"20"}/></Dropdown.Toggle>
                         <Dropdown.Menu>
                             <div className="text-uppercase font-weight-light pl-1">Label</div>
                             <Typeahead

@@ -5,22 +5,21 @@ import Dash from "./Dash";
 export const Context = createContext();
 
 export default function ContextProvider(props) {
-    const myID = props.location.state.email;
-    const header = {Authorization: "Bearer " + props.location.state.jwt};
-    const [clb, setClb] = useState([]);
+    const [label, setLabel] = useState("");
+    const myID = props.myprops.location.state.email;
+    const header = {Authorization: "Bearer " +props.myprops.location.state.jwt};
     const [show, setShow] = useState(false);
     const [undo, setUndo] = useState(false);
     const [toastContent, setToastContent] = useState("");
     const [userlabels, setUserlabels] = useState([]);
     const [notes, setNotes] = useState([]);
     const [prvNote, setPrvNote] = useState({id: 0, field: "", value: ""});
-    const [allNotes, setAllNotes] = useState([]);
     const [noteStatus, setNoteStatus] = useState("Active");
     const inNote = {
         noteId: 0,
         noteTitle: "",
         noteText: "",
-        noteRemainder: "",
+        noteRemainder: null,
         noteRemainderLocation: "",
         showTick: false,
         colour: "white",
@@ -36,30 +35,25 @@ export default function ContextProvider(props) {
         }
     }, [toastContent]);
 
+    const catchError = (err) => {
+        if (err.response.data.message.includes("You are using blocked token") || err.response.data.message.includes("JWT") || err.response.data.message.includes("Your request has expired")) {
+            props.updateError();
+        }
+    };
+
     useEffect(() => {
         if (undo) {
             if (prvNote.id === 0) {
 
             } else {
                 if (prvNote.field === "noteStatus") {
-                    setAllNotes(allNotes.map(value => {
-                        if (value.noteId === prvNote.id) {
-                            value.noteStatus = prvNote.value;
-                            axios.put("/api/notes", value, {headers: header}).catch(err => {
-                                if (err.response.data.message.includes("JWT")) {
-                                    alert("Your session is expired. please login again");
-                                    props.history.push("/login");
-                                }
-                            });
+                    axios.get(`/api/notes/${prvNote.id}`, {headers: header}).then(resp => {
+                            let nt = resp.data.response;
+                            nt.noteStatus = prvNote.value;
+                            updateNote(nt);
                         }
-                        return value
-                    }));
-                    setNotes(allNotes.filter(value => {
-                        if (value.noteId === prvNote.id) {
-                            value.noteStatus = prvNote.value;
-                        }
-                        return value.noteStatus === noteStatus
-                    }));
+                    ).catch(catchError);
+                    noteListUpdate();
                 } else {
                     setNotes(notes.map(value => {
                         if (value.noteId === prvNote.id) {
@@ -70,12 +64,7 @@ export default function ContextProvider(props) {
                             } else {
                                 value = {...value, [prvNote.field]: prvNote.value}
                             }
-                            axios.put("/api/notes", value, {headers: header}).catch(err => {
-                                if (err.response.data.message.includes("JWT")) {
-                                    alert("Your session is expired. please login again");
-                                    props.history.push("/login");
-                                }
-                            });
+                            axios.put("/api/notes", value, {headers: header}).catch(catchError);
                         }
                         return value;
                     }));
@@ -87,20 +76,6 @@ export default function ContextProvider(props) {
     }, [undo]);
 
     useEffect(() => {
-        axios.get(`/api/notes`, {headers: header}).then(resp => {
-            setAllNotes(resp.data.response.reverse());
-            setNotes(resp.data.response.filter(vl => vl.noteStatus === noteStatus))
-        }).catch(err => {
-            setNotes([]);
-            if (err.response.data.message.includes("JWT")) {
-                alert("Your session is expired. please login again");
-                props.history.push("/login");
-            }
-        });
-        axios.get("/api/labels", {headers: header})
-            .then(resp => setUserlabels(resp.data.response)).catch(err => console.log(err));
-        axios.get("/api/labels", {headers: header})
-            .then(resp => setClb(resp.data.response)).catch(err => console.log(err));
         noteListUpdate();
     }, []);
 
@@ -108,85 +83,64 @@ export default function ContextProvider(props) {
         noteListUpdate()
     }, [noteStatus]);
 
-
-    const noteListUpdate = () => {
-        console.log(noteStatus, allNotes);
-        if (noteStatus !== "") {
-            axios.get(`/api/notes/status/${noteStatus}`, {headers: header}).then(resp => {
+    /*useEffect(() => {
+        if (label !== "") {
+            axios.get(`/api/notes/label/${label}`, {headers: header}).then(resp => {
                 setNotes(resp.data.response.reverse());
             }).catch(err => {
-                if (err.response.data.message.includes("JWT")) {
+                if (err.response.data.message.includes("You are using blocked token")||err.response.data.message.includes("JWT")||err.response.data.message.includes("Your request has expired")) {
                     alert("Your session is expired. please login again");
                     props.history.push("/login");
                 }
             });
         }
+    }, [label]);*/
+
+    const noteListUpdate = () => {
+        if (noteStatus !== "") {
+            axios.get(`/api/notes/status/${noteStatus}`, {headers: header}).then(resp => {
+                setNotes(resp.data.response.reverse());
+            }).catch(catchError);
+        } else if (label !== "") {
+            axios.get(`/api/notes/label/${label}`, {headers: header}).then(resp => {
+                setNotes(resp.data.response.reverse());
+            }).catch(catchError);
+        } else {
+            axios.get("/api/notes/remainder", {headers: header}).then(resp => {
+                setNotes(resp.data.response.reverse());
+            }).catch(catchError);
+        }
     };
     const updateNote = (note) => {
-        axios.put("/api/notes", note, {headers: header}).then(resp => {
-            if (note.noteStatus === noteStatus) {
-                setNotes(notes.map(value => {
-                    let note = resp.data.response;
-                    if (value.noteId === note.noteId) {
-                        value = note;
-                    }
-                    return value
-                }))
-            }
-        }).catch(err => {
-            if (err.response.data.message.includes("JWT")) {
-                alert("Your session is expired. please login again");
-                props.history.push("/login");
-            }
-        });
+        axios.put("/api/notes", note, {headers: header}).then(noteListUpdate).catch(catchError);
     };
     const noteActive = (note) => {
         note.noteStatus = "Active";
-        axios.post("/api/notes", note, {headers: header}).then(resp => {
-            noteListUpdate();
-        }).catch(err => {
-            if (err.response.data.message.includes("JWT")) {
-                alert("Your session is expired. please login again");
-                props.history.push("/login");
-            }
-        });
+        updateNote(note);
     };
     const noteArchive = (note) => {
         note.noteStatus = "Archive";
         note.pinned = false;
-        axios.post("/api/notes", note, {headers: header}).then(resp => {
-            noteListUpdate();
-        }).catch(err => {
-            if (err.response.data.message.includes("JWT")) {
-                alert("Your session is expired. please login again");
-                props.history.push("/login");
-            }
-        });
+        updateNote(note);
     };
     const noteTrash = (note) => {
-        note.noteStatus = "Trash";
-        note.pinned = false;
-        axios.post("/api/notes", note, {headers: header}).then(resp => {
-            noteListUpdate();
-        }).catch(err => {
-            if (err.response.data.message.includes("JWT")) {
-                alert("Your session is expired. please login again");
-                props.history.push("/login");
+        if (note.noteStatus === "Trash") {
+            if (window.confirm("This will be permanently delete your note. Are you sure?")) {
+                axios.delete(`/api/notes/${note.noteId}`, {headers: header}).then(noteListUpdate).catch(catchError)
             }
-        });
+        } else {
+            note.noteStatus = "Trash";
+            note.pinned = false;
+            updateNote(note);
+            setToastContent("Note Trashed");
+        }
     };
     const save = (isSave, note) => {
-        console.log("save Method", note);
         if (isSave) {
             if (note.noteTitle !== "" || note.noteText !== "" || note.noteRemainder !== "" || note.collaborator.length > 0) {
                 axios.post("/api/notes", note, {headers: header}).then(resp => {
-                    setNotes([resp.data.response, ...notes]);
-                }).catch(err => {
-                    if (err.response.data.message.includes("JWT")) {
-                        alert("Your session is expired. please login again");
-                        props.history.push("/login");
-                    }
-                });
+                    noteListUpdate();
+                }).catch(catchError);
             }
         }
     };
@@ -196,36 +150,50 @@ export default function ContextProvider(props) {
         axios.post("/api/labels", null, {
             params: {labelText},
             headers: header
-        }).then(() => setUserlabels([...userlabels, labelText]));
+        }).then(() => setUserlabels([...userlabels, labelText])).catch(catchError);
     };
 
-    const editLable = (old, newText) => {
+    const editLable = (oldLabel, newLabel) => {
         axios.put("/api/labels", null, {
-            params: {old, newText},
+            params: {oldLabel, newLabel},
             headers: header
-        }).then(() => setUserlabels(userlabels.map(value => {
-            if (value === old) {
-                value = newText;
+        }).then(() => {
+                setUserlabels(userlabels.map(value => {
+                    if (value === oldLabel) {
+                        value = newLabel;
+                    }
+                    return value;
+                }));
+                setLabel(newLabel);
+                noteListUpdate();
             }
-            return value;
-        })));
+        ).catch(catchError);
     };
     const deleteLabel = (labelText) => {
-        axios.delete(`/api/labels/${labelText}`, {headers: header}).then(() => setUserlabels(userlabels.filter(value => {
-            return value !== labelText;
-        })));
+        axios.delete(`/api/labels/${labelText}`, {headers: header}).then(() => {
+            setUserlabels(userlabels.filter(value => {
+                return value !== labelText;
+            }));
+            setNoteStatus("Active");
+            setLabel("");
+            noteListUpdate();
+        }).catch(catchError);
     };
 
     const statusUpdate = (status) => {
+        setLabel("");
         setNoteStatus(status);
     };
     const labelSelection = (labelName) => {
+        setLabel(labelName);
         setNoteStatus("");
-        setNotes(allNotes.filter(value => value.labels.includes(labelName)))
     };
     const remaiderNote = () => {
+        setLabel("");
         setNoteStatus("");
-        setNotes(allNotes.filter(value => value.noteRemainder !== null && value.noteRemainder !== ""))
+        axios.get("/api/notes/remainder", {headers: header}).then(resp => {
+            setNotes(resp.data.response.reverse());
+        }).catch(catchError);
     };
     const hide = () => {
         setToastContent("");
@@ -257,7 +225,11 @@ export default function ContextProvider(props) {
             setToastContent: setToastContent,
             setPrvNote: setPrvNote,
             noteTrash: noteTrash,
-            noteActive: noteActive
+            noteActive: noteActive,
+            header: header,
+            setUserlabels: setUserlabels,
+            catchError:catchError,
+            logout:props.logout
         }}>
             <Dash/>
         </Context.Provider>

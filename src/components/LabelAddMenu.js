@@ -27,7 +27,6 @@ export default function LabelAddMenu(props) {
 
     const addLabel = () => {
         if (inRef.current.value !== "") {
-            console.log(inRef.current.value);
             context.saveLabel(inRef.current.value);
             inRef.current.value = "";
         }

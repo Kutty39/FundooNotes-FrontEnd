@@ -24,7 +24,6 @@ export default function Note() {
     const noteDelete=()=>{
         context.setPrvNote({id:note.noteId,field:"noteStatus",value:note.noteStatus});
         setNote({...note, noteStatus: "Trash"});
-        context.setToastContent("Note Trashed");
         context.noteTrash(note);
         setNoteHide(true);
     };
