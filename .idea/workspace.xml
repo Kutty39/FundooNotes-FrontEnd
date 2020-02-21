@@ -2,27 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41633a79-874b-430c-b72a-b82ad5f86e4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ErrorBoundary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ActiveNotePanel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ColbPop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColbPop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Context.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Context.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LabelAddMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelAddMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MyTag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MyTag.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Note.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Note.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NoteModels.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteModels.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NoteToolBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoteToolBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileMenu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ResetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/beautiful-water-drop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,12 +57,12 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Components" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -155,7 +140,11 @@
       <workItem from="1581740322617" duration="16228000" />
       <workItem from="1581915083720" duration="8720000" />
       <workItem from="1581936012350" duration="4709000" />
-      <workItem from="1581997556111" duration="6673000" />
+      <workItem from="1581997556111" duration="7575000" />
+      <workItem from="1582019444045" duration="1774000" />
+      <workItem from="1582084485286" duration="1704000" />
+      <workItem from="1582169926778" duration="14478000" />
+      <workItem from="1582264563272" duration="4577000" />
     </task>
     <servers />
   </component>
@@ -179,6 +168,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1582003578961" />
+    <state x="271" y="27" width="881" height="741" key="CommitChangelistDialog2" timestamp="1582270964411">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="271" y="27" width="881" height="741" key="CommitChangelistDialog2/67.27.1299.741@67.27.1299.741" timestamp="1582270964411" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1581674941029">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -187,22 +180,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1579168517481" />
-    <state width="1253" height="100" key="GridCell.Tab.0.bottom" timestamp="1581760974808">
+    <state width="1253" height="226" key="GridCell.Tab.0.bottom" timestamp="1582270920804">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1581760974808" />
-    <state width="1253" height="100" key="GridCell.Tab.0.center" timestamp="1581760974806">
+    <state width="1253" height="226" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582270920804" />
+    <state width="1253" height="226" key="GridCell.Tab.0.center" timestamp="1582270920802">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1581760974806" />
-    <state width="1253" height="100" key="GridCell.Tab.0.left" timestamp="1581760974806">
+    <state width="1253" height="226" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582270920802" />
+    <state width="1253" height="226" key="GridCell.Tab.0.left" timestamp="1582270920801">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1581760974806" />
-    <state width="1253" height="100" key="GridCell.Tab.0.right" timestamp="1581760974807">
+    <state width="1253" height="226" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582270920801" />
+    <state width="1253" height="226" key="GridCell.Tab.0.right" timestamp="1582270920803">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="100" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1581760974807" />
+    <state width="1253" height="226" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582270920803" />
     <state width="1253" height="219" key="GridCell.Tab.1.bottom" timestamp="1581084035570">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -259,10 +252,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="560" y="313" width="303" height="167" key="VCS.ChangelistChooser/67.27.1299.741@67.27.1299.741" timestamp="1582003279674" />
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1581936485553">
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1582173273245">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1581936485553" />
+    <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1582173273245" />
     <state x="361" y="122" width="869" height="646" key="find.popup" timestamp="1582003703010">
       <screen x="67" y="27" width="1299" height="741" />
     </state>

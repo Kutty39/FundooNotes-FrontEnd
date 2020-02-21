@@ -9,7 +9,6 @@ export default function ContextProvider(props) {
     const myID = props.myprops.location.state.email;
     const header = {Authorization: "Bearer " +props.myprops.location.state.jwt};
     const [show, setShow] = useState(false);
-    const [undo, setUndo] = useState(false);
     const [toastContent, setToastContent] = useState("");
     const [userlabels, setUserlabels] = useState([]);
     const [notes, setNotes] = useState([]);
@@ -42,59 +41,12 @@ export default function ContextProvider(props) {
     };
 
     useEffect(() => {
-        if (undo) {
-            if (prvNote.id === 0) {
-
-            } else {
-                if (prvNote.field === "noteStatus") {
-                    axios.get(`/api/notes/${prvNote.id}`, {headers: header}).then(resp => {
-                            let nt = resp.data.response;
-                            nt.noteStatus = prvNote.value;
-                            updateNote(nt);
-                        }
-                    ).catch(catchError);
-                    noteListUpdate();
-                } else {
-                    setNotes(notes.map(value => {
-                        if (value.noteId === prvNote.id) {
-                            if (prvNote.field.includes("|:|")) {
-                                prvNote.field.split("|:|").map((field, id) =>
-                                    value = {...value, [field]: prvNote.value.split("|:|")[id]}
-                                )
-                            } else {
-                                value = {...value, [prvNote.field]: prvNote.value}
-                            }
-                            axios.put("/api/notes", value, {headers: header}).catch(catchError);
-                        }
-                        return value;
-                    }));
-                }
-            }
-            setUndo(false);
-            setToastContent("");
-        }
-    }, [undo]);
-
-    useEffect(() => {
         noteListUpdate();
     }, []);
 
     useEffect(() => {
         noteListUpdate()
     }, [noteStatus]);
-
-    /*useEffect(() => {
-        if (label !== "") {
-            axios.get(`/api/notes/label/${label}`, {headers: header}).then(resp => {
-                setNotes(resp.data.response.reverse());
-            }).catch(err => {
-                if (err.response.data.message.includes("You are using blocked token")||err.response.data.message.includes("JWT")||err.response.data.message.includes("Your request has expired")) {
-                    alert("Your session is expired. please login again");
-                    props.history.push("/login");
-                }
-            });
-        }
-    }, [label]);*/
 
     const noteListUpdate = () => {
         if (noteStatus !== "") {
@@ -138,9 +90,7 @@ export default function ContextProvider(props) {
     const save = (isSave, note) => {
         if (isSave) {
             if (note.noteTitle !== "" || note.noteText !== "" || note.noteRemainder !== "" || note.collaborator.length > 0) {
-                axios.post("/api/notes", note, {headers: header}).then(resp => {
-                    noteListUpdate();
-                }).catch(catchError);
+                axios.post("/api/notes", note, {headers: header}).then(noteListUpdate).catch(catchError);
             }
         }
     };
@@ -195,12 +145,47 @@ export default function ContextProvider(props) {
             setNotes(resp.data.response.reverse());
         }).catch(catchError);
     };
-    const hide = () => {
+    const hideToast = (undo) => {
+        if(undo){
+            if (prvNote.id !== 0) {
+                if (prvNote.field === "noteStatus") {
+                    axios.get(`/api/notes/${prvNote.id}`, {headers: header}).then(resp => {
+                            let nt = resp.data.response;
+                            nt.noteStatus = prvNote.value;
+                            updateNote(nt);
+                        }
+                    ).catch(catchError);
+                    noteListUpdate();
+                } else {
+                    setNotes(notes.map(value => {
+                        if (value.noteId === prvNote.id) {
+                            if (prvNote.field.includes("|:|")) {
+                                prvNote.field.split("|:|").map((field, id) =>
+                                    value = {...value, [field]: prvNote.value.split("|:|")[id]}
+                                )
+                            } else {
+                                value = {...value, [prvNote.field]: prvNote.value}
+                            }
+                            axios.put("/api/notes", value, {headers: header}).catch(catchError);
+                        }
+                        return value;
+                    }));
+                }
+            }
+        }
         setToastContent("");
         setShow(false);
     };
     const view = () => setShow(true);
-
+const searchAll=(e)=>{
+    setNoteStatus("");
+  axios.get(`/api/search/${e.target.value}`,{headers:header}).then(resp=>setNotes(resp.data.response)).catch(catchError);
+};
+const clearAll=(ref)=>{
+    ref.current.value="";
+    ref.current.focus();
+    setNoteStatus("Active");
+};
     return (
         <Context.Provider value={{
             myID: myID,
@@ -218,8 +203,7 @@ export default function ContextProvider(props) {
             statusUpdate: statusUpdate,
             labelSelection: labelSelection,
             remaiderNote: remaiderNote,
-            setUndo: setUndo,
-            hide: hide,
+            hideToast: hideToast,
             show: show,
             toastContent: toastContent,
             setToastContent: setToastContent,
@@ -229,7 +213,9 @@ export default function ContextProvider(props) {
             header: header,
             setUserlabels: setUserlabels,
             catchError:catchError,
-            logout:props.logout
+            logout:props.logout,
+            clearAll:clearAll,
+            searchAll:searchAll
         }}>
             <Dash/>
         </Context.Provider>

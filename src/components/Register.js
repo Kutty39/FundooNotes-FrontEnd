@@ -5,13 +5,13 @@ import MaterialIcon from 'react-google-material-icons'
 import {Link} from "react-router-dom";
 
 function Register(props) {
-    const [emailError, setEmailError] = useState(true);
+    const [emailError, setEmailError] = useState(false);
     const [pasError, setPasError] = useState({
         er: false,
         msg: "Password is combination of Upper case,Lower case,Number and Special Character it should be min length of 8 and Max 15"
     });
     const [validated, setValidated] = useState(false);
-    const [regData, setRegData] = useState({fname: "", lname: "", eid: "", phn: "", adrs: "", pas: "", conpas: ""})
+    const [regData, setRegData] = useState({fname: "", lname: "", eid: "", phn: "", adrs: "", pas: "", conpas: ""});
     useEffect(() => {
         document.title = "Registration"
     }, []);

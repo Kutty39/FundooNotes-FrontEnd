@@ -60,11 +60,11 @@ export default function Dash() {
                 <InputGroup className="mx-2 p-2"
                             style={{backgroundColor: '#eceff1', borderRadius: "20px", minWidth: "200px"}}>
                     <MyToolTip text={"Search"}><Button className="navBtn" size={"sm"}
-                                                       onClick={e => searchRef.current.focus()}><MaterialIcon
+                                                       onClick={searchRef.current.focus}><MaterialIcon
                         icon={"search"}/></Button></MyToolTip>
                     <FormControl ref={searchRef} className="bg-transparent border-0" placeholder={"Search"}
-                                 style={{borderRadius: "10px"}}/>
-                    <Button className="navBtn" size={"sm"}><MaterialIcon icon={"close"}/></Button>
+                                 style={{borderRadius: "10px"}} onChange={context.searchAll}/>
+                    <Button className="navBtn" size={"sm"} onClick={()=>context.clearAll(searchRef)}><MaterialIcon icon={"close"}/></Button>
                 </InputGroup>
                 <MyToolTip text={Obj.viewText}><Button variant={"light"} style={{borderRadius: "75%"}}
                                                        onClick={changeView}><MaterialIcon
@@ -150,13 +150,10 @@ export default function Dash() {
                         </Row> : null}
 
                 </div>
-                <Toast show={context.show} onClose={context.hide} className="fixed-bottom" autohide>
-                    <Toast.Header className="bg-dark">
+                <Toast show={context.show} onClose={()=>context.hideToast(false)} className="fixed-bottom" style={{right:"auto"}} autohide>
+                    <Toast.Header className="bg-dark text-white">
                         <strong className="mr-2">{context.toastContent}</strong>
-                        <Button variant={"dark"} className="text-white" onClick={() => {
-                            context.setUndo(true);
-                            context.hide();
-                        }}><strong>UNDO</strong></Button>
+                        <Button variant={"dark"} className="float-right" onClick={() => context.hideToast(true)}><strong>UNDO</strong></Button>
                     </Toast.Header>
                 </Toast>
             </div>

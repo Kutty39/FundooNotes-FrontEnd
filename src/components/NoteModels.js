@@ -11,17 +11,17 @@ export default function NoteModels(props) {
     const [show, setShow] = useState({model: false, editIcon: "label"});
     const [note, setNote] = useState(props.note);
     const [noteHide, setNoteHide] = useState(false);
-    let oldNote=props.note;
+    let oldNote = props.note;
 
     useEffect(() => {
         setNote(props.note);
     }, [props]);
     const handleShow = () => {
         setShow({...show, model: true});
-        oldNote=note;
+        oldNote = note;
     };
     const noteSave = () => {
-        if(oldNote!==note){
+        if (oldNote !== note) {
             context.noteSave(true, note);
         }
         setShow({...show, model: false});
@@ -56,7 +56,7 @@ export default function NoteModels(props) {
     return (
         <>
             <Card className={"shadow-sm mr-2 mb-2 " + props.list}
-                  style={{minWidth: '18rem',width: '18rem', backgroundColor: note.colour, borderRadius: "10px"}}>
+                  style={{minWidth: '18rem', width: '18rem', backgroundColor: note.colour, borderRadius: "10px"}}>
                 <Card.Body>
                     <Card.Title>
                         <FormLabel className="border-0 mr-1 bg-transparent w-75"
