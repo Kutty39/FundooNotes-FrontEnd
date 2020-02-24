@@ -60,7 +60,7 @@ export default function Dash() {
                 <InputGroup className="mx-2 p-2"
                             style={{backgroundColor: '#eceff1', borderRadius: "20px", minWidth: "200px"}}>
                     <MyToolTip text={"Search"}><Button className="navBtn" size={"sm"}
-                                                       onClick={searchRef.current.focus}><MaterialIcon
+                                                       onClick={()=>searchRef.current.focus()}><MaterialIcon
                         icon={"search"}/></Button></MyToolTip>
                     <FormControl ref={searchRef} className="bg-transparent border-0" placeholder={"Search"}
                                  style={{borderRadius: "10px"}} onChange={context.searchAll}/>
